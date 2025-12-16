@@ -1,0 +1,31 @@
+{
+  "general": {
+    "search": "Search",
+    "newsletter": {
+      "email_placeholder": "Email address",
+      "subscribe": "SUBSCRIBE"
+    }
+  },
+  "cart": {
+    "title": "Your Bag",
+    "empty": "Your cart is empty",
+    "continue_shopping": "CONTINUE SHOPPING",
+    "subtotal": "Subtotal",
+    "shipping_at_checkout": "Shipping & taxes calculated at checkout.",
+    "checkout": "CHECKOUT",
+    "remove": "REMOVE",
+    "free_shipping_remaining": "You are {{ amount }} away from Free Shipping",
+    "free_shipping_qualified": "You qualify for Free Shipping!"
+  },
+  "products": {
+    "add_to_cart": "Add to Cart",
+    "sold_out": "Sold Out",
+    "description": "Description",
+    "ingredients": "Ingredients",
+    "shipping": "Shipping"
+  },
+  "collections": {
+    "all": "Shop All",
+    "sort_by": "Sort by"
+  }
+}

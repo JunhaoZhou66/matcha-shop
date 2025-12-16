@@ -1,0 +1,29 @@
+<div style="padding: 2rem 3rem; max-width: 1400px; margin: 0 auto;">
+  <h1 class="serif" style="font-size: 3rem;">{{ section.settings.title | default: collection.title | default: 'Matcha Collection' }}</h1>
+  <p style="margin-top: 1rem; max-width: 600px; color: #666;">
+    {{ section.settings.description | default: collection.description | default: 'Sourced directly from Uji, Japan. Our matcha is shade-grown for 20 days and stone-ground to preserve its vibrant color and umami flavor.' }}
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Hero"
+    }
+  ]
+}
+{% endschema %}

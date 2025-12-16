@@ -1,0 +1,73 @@
+<div class="category-nav">
+  <div class="categories">
+    <a href="/collections/all" class="{% if collection.handle == 'all' or collection == blank %}active{% endif %}" style="font-weight: bold; margin-right: 20px;">
+      {{ 'collections.all' | t | default: 'Shop All' }}
+    </a>
+    {% for link in section.settings.category_menu.links %}
+      <a href="{{ link.url }}" style="margin-left: 20px;">{{ link.title }}</a>
+    {% endfor %}
+  </div>
+  <div style="cursor: pointer;">{{ 'collections.sort_by' | t | default: 'Sort by' }} ▾</div>
+</div>
+
+<section class="product-grid" id="productsGrid">
+  {% if collection.products.size > 0 %}
+    {% for product in collection.products limit: section.settings.products_per_page %}
+      {% render 'product-card', product: product %}
+    {% endfor %}
+  {% elsif section.settings.collection != blank %}
+    {% for product in section.settings.collection.products limit: section.settings.products_per_page %}
+      {% render 'product-card', product: product %}
+    {% endfor %}
+  {% else %}
+    {% for product in collections.all.products limit: section.settings.products_per_page %}
+      {% render 'product-card', product: product %}
+    {% endfor %}
+  {% endif %}
+</section>
+
+{% if section.settings.enable_pagination %}
+  {% paginate collection.products by section.settings.products_per_page %}
+    <div class="pagination" style="text-align: center; padding: 2rem;">
+      {{ paginate | default_pagination }}
+    </div>
+  {% endpaginate %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "link_list",
+      "id": "category_menu",
+      "label": "Category Menu"
+    },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 4,
+      "max": 24,
+      "step": 4,
+      "default": 12,
+      "label": "Products per page"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_pagination",
+      "label": "Enable pagination",
+      "default": true
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Grid"
+    }
+  ]
+}
+{% endschema %}

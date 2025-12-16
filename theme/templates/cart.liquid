@@ -1,0 +1,68 @@
+{% comment %}
+  Cart Template - Full page cart
+{% endcomment %}
+
+<div style="padding: 2rem 3rem; max-width: 1400px; margin: 0 auto;">
+  <h1 class="serif" style="font-size: 2.5rem; margin-bottom: 2rem;">{{ 'cart.title' | t }}</h1>
+
+  {% if cart.item_count == 0 %}
+    <div style="text-align: center; padding: 4rem 2rem;">
+      <p style="color: #666; font-size: 1.2rem; margin-bottom: 2rem;">{{ 'cart.empty' | t }}</p>
+      <a href="/collections/all" class="add-to-cart-btn" style="display: inline-block; padding: 1rem 2rem;">
+        {{ 'cart.continue_shopping' | t }}
+      </a>
+    </div>
+  {% else %}
+    <form action="/cart" method="post">
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr style="border-bottom: 1px solid #D6D3CF;">
+            <th style="text-align: left; padding: 1rem 0;">Product</th>
+            <th style="text-align: center; padding: 1rem 0;">Quantity</th>
+            <th style="text-align: right; padding: 1rem 0;">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr style="border-bottom: 1px solid #EEE;">
+              <td style="padding: 1.5rem 0;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.title }}" style="width: 80px; height: 100px; object-fit: cover;">
+                  <div>
+                    <h3 class="serif" style="margin-bottom: 0.5rem;">{{ item.product.title }}</h3>
+                    {% if item.variant.title != 'Default Title' %}
+                      <p style="color: #666; font-size: 0.9rem;">{{ item.variant.title }}</p>
+                    {% endif %}
+                    <p style="color: #666;">{{ item.price | money }}</p>
+                  </div>
+                </div>
+              </td>
+              <td style="text-align: center;">
+                <div style="display: inline-flex; align-items: center; border: 1px solid #D6D3CF; padding: 0.5rem;">
+                  <a href="/cart/change?id={{ item.key }}&quantity={{ item.quantity | minus: 1 }}" style="padding: 0 0.5rem;">-</a>
+                  <span style="padding: 0 1rem;">{{ item.quantity }}</span>
+                  <a href="/cart/change?id={{ item.key }}&quantity={{ item.quantity | plus: 1 }}" style="padding: 0 0.5rem;">+</a>
+                </div>
+              </td>
+              <td style="text-align: right;">
+                {{ item.line_price | money }}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <div style="margin-top: 2rem; text-align: right;">
+        <div style="font-size: 1.2rem; margin-bottom: 1rem;">
+          <strong>{{ 'cart.subtotal' | t }}:</strong> {{ cart.total_price | money }}
+        </div>
+        <p style="color: #666; font-size: 0.9rem; margin-bottom: 1.5rem;">
+          {{ 'cart.shipping_at_checkout' | t }}
+        </p>
+        <a href="/checkout" class="add-to-cart-btn" style="display: inline-block; padding: 1rem 3rem;">
+          {{ 'cart.checkout' | t }}
+        </a>
+      </div>
+    </form>
+  {% endif %}
+</div>

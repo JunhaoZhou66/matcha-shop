@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "collection-hero": {
+      "type": "collection-hero",
+      "settings": {
+        "title": "Matcha Collection",
+        "description": "<p>Sourced directly from Uji, Japan. Our matcha is shade-grown for 20 days and stone-ground to preserve its vibrant color and umami flavor.</p>"
+      }
+    },
+    "product-grid": {
+      "type": "product-grid",
+      "settings": {
+        "products_per_page": 12,
+        "enable_pagination": true
+      }
+    }
+  },
+  "order": [
+    "collection-hero",
+    "product-grid"
+  ]
+}

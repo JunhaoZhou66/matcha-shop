@@ -1,0 +1,109 @@
+{% comment %}
+  Product Template
+{% endcomment %}
+
+<div class="product-detail-container">
+  <div class="pd-image">
+    {% if product.featured_image %}
+      <img
+        class="product-img-large"
+        src="{{ product.featured_image | image_url: width: 1000 }}"
+        alt="{{ product.featured_image.alt | escape | default: product.title }}"
+      >
+    {% else %}
+      {{ 'product-1' | placeholder_svg_tag: 'product-img-large' }}
+    {% endif %}
+  </div>
+
+  <div class="pd-info product-info">
+    <div style="max-width: 500px;">
+      <span class="pd-price" style="float: right;">
+        <p>{{ product.price | money }} USD</p>
+      </span>
+      <h1 class="pd-title serif">{{ product.title }}</h1>
+
+      {% if product.metafields.custom.subtitle %}
+        <p style="font-style: italic; margin-bottom: 1rem; color: #444;">
+          {{ product.metafields.custom.subtitle }}
+        </p>
+      {% endif %}
+
+      <p class="pd-desc">
+        {{ product.description }}
+      </p>
+
+      {% form 'product', product %}
+        {% if product.variants.size > 1 %}
+          <select name="id" data-variant-selector style="width: 100%; padding: 1rem; margin-bottom: 1rem; border: 1px solid #D6D3CF;">
+            {% for variant in product.variants %}
+              <option
+                value="{{ variant.id }}"
+                {% if variant == product.selected_or_first_available_variant %}selected{% endif %}
+                {% unless variant.available %}disabled{% endunless %}
+              >
+                {{ variant.title }} - {{ variant.price | money }}
+                {% unless variant.available %} (Sold Out){% endunless %}
+              </option>
+            {% endfor %}
+          </select>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endif %}
+
+        <button
+          type="submit"
+          name="add"
+          class="add-to-cart-btn"
+          data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+          {% unless product.available %}disabled{% endunless %}
+        >
+          {% if product.available %}
+            {{ 'products.add_to_cart' | t }} — {{ product.price | money }}
+          {% else %}
+            {{ 'products.sold_out' | t }}
+          {% endif %}
+        </button>
+      {% endform %}
+
+      <div class="accordion">
+        {% if product.metafields.custom.description_details %}
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>{{ 'products.description' | t }}</span>
+              <span>+</span>
+            </div>
+            <div class="accordion-content">
+              <p>{{ product.metafields.custom.description_details }}</p>
+            </div>
+          </div>
+        {% endif %}
+
+        {% if product.metafields.custom.ingredients %}
+          <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <span>{{ 'products.ingredients' | t }}</span>
+              <span>+</span>
+            </div>
+            <div class="accordion-content">
+              <p>{{ product.metafields.custom.ingredients }}</p>
+            </div>
+          </div>
+        {% endif %}
+
+        <div class="accordion-item">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>{{ 'products.shipping' | t }}</span>
+            <span>+</span>
+          </div>
+          <div class="accordion-content">
+            <p>{{ settings.shipping_info | default: 'Free shipping on orders over $50. Standard delivery: 3-5 business days.' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.productVariants = {{ product.variants | json }};
+</script>

@@ -1,0 +1,95 @@
+<footer>
+  <div class="footer-top">
+    <div class="newsletter">
+      <h3 class="serif">{{ section.settings.newsletter_title | default: 'Newsletter' }}</h3>
+      <p style="margin-bottom: 1.5rem; color: #666;">{{ section.settings.newsletter_text | default: 'Sign up for 10% off your first order.' }}</p>
+      {% form 'customer', class: 'newsletter-form' %}
+        <input
+          type="email"
+          name="contact[email]"
+          placeholder="{{ 'general.newsletter.email_placeholder' | t }}"
+          class="newsletter-input"
+          required
+        >
+        <button type="submit" style="background:none; border:none; font-weight:bold; cursor:pointer;">
+          {{ 'general.newsletter.subscribe' | t }} →
+        </button>
+      {% endform %}
+    </div>
+
+    <div class="footer-links">
+      {% for block in section.blocks %}
+        <div {{ block.shopify_attributes }}>
+          <h4>{{ block.settings.heading }}</h4>
+          <ul>
+            {% for link in block.settings.menu.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div style="border-top: 1px solid #ddd; padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: #888;">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+    <span>
+      {% if section.settings.social_instagram != blank %}
+        <a href="{{ section.settings.social_instagram }}" target="_blank">Instagram</a> &nbsp;&nbsp;
+      {% endif %}
+      {% if section.settings.social_facebook != blank %}
+        <a href="{{ section.settings.social_facebook }}" target="_blank">Facebook</a>
+      {% endif %}
+    </span>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "newsletter_title",
+      "label": "Newsletter Title",
+      "default": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "newsletter_text",
+      "label": "Newsletter Text",
+      "default": "Sign up for 10% off your first order."
+    },
+    {
+      "type": "url",
+      "id": "social_instagram",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "social_facebook",
+      "label": "Facebook URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "menu",
+      "name": "Menu Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Quick Links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4
+}
+{% endschema %}

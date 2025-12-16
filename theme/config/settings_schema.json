@@ -1,0 +1,103 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Kyoto Mist",
+    "theme_version": "1.0.0",
+    "theme_author": "Kyoto Mist",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background color",
+        "default": "#F4F1ED"
+      },
+      {
+        "type": "color",
+        "id": "color_text_primary",
+        "label": "Primary text color",
+        "default": "#1C1C1C"
+      },
+      {
+        "type": "color",
+        "id": "color_text_secondary",
+        "label": "Secondary text color",
+        "default": "#595959"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color (Matcha green)",
+        "default": "#7A9A6E"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border color",
+        "default": "#D6D3CF"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "font_heading",
+        "label": "Heading font",
+        "default": "cormorant_garamond_n5"
+      },
+      {
+        "type": "font_picker",
+        "id": "font_body",
+        "label": "Body font",
+        "default": "lato_n4"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "range",
+        "id": "free_shipping_threshold",
+        "label": "Free shipping threshold ($)",
+        "min": 0,
+        "max": 200,
+        "step": 5,
+        "default": 50,
+        "unit": "$"
+      }
+    ]
+  },
+  {
+    "name": "Product",
+    "settings": [
+      {
+        "type": "textarea",
+        "id": "shipping_info",
+        "label": "Shipping information",
+        "default": "Free shipping on orders over $50. Standard delivery: 3-5 business days."
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook URL"
+      }
+    ]
+  }
+]

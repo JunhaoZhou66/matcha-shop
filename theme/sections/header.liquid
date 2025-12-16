@@ -1,0 +1,44 @@
+<header>
+  <div class="nav-container">
+    <nav class="nav-left">
+      {% for link in section.settings.menu.links %}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {% endfor %}
+    </nav>
+
+    <a href="/" class="brand serif">{{ shop.name }}</a>
+
+    <div class="nav-right">
+      <a href="/search" aria-label="{{ 'general.search' | t }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </a>
+      <span onclick="toggleCart()" style="cursor: pointer;" aria-label="{{ 'cart.title' | t }}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        {% if cart.item_count > 0 %}
+          <span class="cart-badge">{{ cart.item_count }}</span>
+        {% endif %}
+      </span>
+    </div>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Navigation Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

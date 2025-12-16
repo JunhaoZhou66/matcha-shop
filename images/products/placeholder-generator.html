@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>抹茶产品图片占位生成器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .placeholder {
+            width: 100%;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            background: linear-gradient(135deg, #7A9A6E 0%, #5A7A4E 100%);
+            color: white;
+        }
+        .info {
+            padding: 15px;
+        }
+        .filename {
+            font-weight: bold;
+            color: #7A9A6E;
+            margin-bottom: 5px;
+        }
+        .name {
+            color: #666;
+            font-size: 14px;
+        }
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffeebb;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .instructions h2 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        .instructions ol {
+            margin-left: 20px;
+            color: #856404;
+        }
+        .instructions li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🍵 抹茶产品图片占位示例</h1>
+
+    <div class="instructions">
+        <h2>📁 图片文件夹位置说明</h2>
+        <ol>
+            <li>所有产品图片应放在: <strong>/images/products/</strong> 文件夹</li>
+            <li>图片格式: JPG 或 PNG</li>
+            <li>建议尺寸: 400x400 像素（正方形）</li>
+            <li>文件命名: 请按照下方显示的文件名保存</li>
+            <li>当前状态: 系统会继续使用在线图片，直到您添加本地图片</li>
+        </ol>
+    </div>
+
+    <div class="grid">
+        <!-- 抹茶粉系列 -->
+        <div class="card">
+            <div class="placeholder">🍵</div>
+            <div class="info">
+                <div class="filename">ceremonial-grade.jpg</div>
+                <div class="name">Ceremonial Grade Matcha</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">🌟</div>
+            <div class="info">
+                <div class="filename">premium-ceremonial.jpg</div>
+                <div class="name">Premium Ceremonial Matcha</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">☀️</div>
+            <div class="info">
+                <div class="filename">daily-ritual.jpg</div>
+                <div class="name">Daily Ritual Tin</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">🥘</div>
+            <div class="info">
+                <div class="filename">culinary-grade.jpg</div>
+                <div class="name">Culinary Grade Matcha</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">☕</div>
+            <div class="info">
+                <div class="filename">barista-blend.jpg</div>
+                <div class="name">Barista Blend Latte</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">🌿</div>
+            <div class="info">
+                <div class="filename">organic-supreme.jpg</div>
+                <div class="name">Organic Matcha Supreme</div>
+            </div>
+        </div>
+
+        <!-- 工具套装 -->
+        <div class="card">
+            <div class="placeholder">🎋</div>
+            <div class="info">
+                <div class="filename">bamboo-whisk.jpg</div>
+                <div class="name">Bamboo Whisk Set</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">🍃</div>
+            <div class="info">
+                <div class="filename">ceremony-set.jpg</div>
+                <div class="name">Complete Ceremony Set</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">🎁</div>
+            <div class="info">
+                <div class="filename">starter-kit.jpg</div>
+                <div class="name">Starter Kit Essential</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">✈️</div>
+            <div class="info">
+                <div class="filename">travel-set.jpg</div>
+                <div class="name">Travel Matcha Set</div>
+            </div>
+        </div>
+
+        <!-- 即饮产品 -->
+        <div class="card">
+            <div class="placeholder">🧊</div>
+            <div class="info">
+                <div class="filename">cold-brew.jpg</div>
+                <div class="name">Matcha Cold Brew</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">⚡</div>
+            <div class="info">
+                <div class="filename">energy-shot.jpg</div>
+                <div class="name">Matcha Energy Shot</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">✨</div>
+            <div class="info">
+                <div class="filename">sparkling-matcha.jpg</div>
+                <div class="name">Sparkling Matcha</div>
+            </div>
+        </div>
+
+        <!-- 抹茶零食 -->
+        <div class="card">
+            <div class="placeholder">🍫</div>
+            <div class="info">
+                <div class="filename">chocolate-bar.jpg</div>
+                <div class="name">Matcha Chocolate Bar</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">🍪</div>
+            <div class="info">
+                <div class="filename">cookies.jpg</div>
+                <div class="name">Matcha Cookies</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">🍯</div>
+            <div class="info">
+                <div class="filename">honey.jpg</div>
+                <div class="name">Matcha Honey</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">🍡</div>
+            <div class="info">
+                <div class="filename">mochi.jpg</div>
+                <div class="name">Matcha Mochi</div>
+            </div>
+        </div>
+
+        <!-- 限定版系列 -->
+        <div class="card">
+            <div class="placeholder">🌸</div>
+            <div class="info">
+                <div class="filename">sakura-blend.jpg</div>
+                <div class="name">Sakura Matcha Blend</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">🌙</div>
+            <div class="info">
+                <div class="filename">harvest-moon.jpg</div>
+                <div class="name">Harvest Moon Matcha</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="placeholder">👑</div>
+            <div class="info">
+                <div class="filename">masters-reserve.jpg</div>
+                <div class="name">Master's Reserve</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

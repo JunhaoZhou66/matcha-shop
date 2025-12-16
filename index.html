@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyoto Mist | Premium Matcha</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <nav class="nav-left">
+                <a href="index.html">Webshop</a>
+                <a href="#">Everyday Rituals</a>
+                <a href="#">About Us</a>
+            </nav>
+            <a href="index.html" class="brand serif">KYOTO MIST</a>
+            <div class="nav-right">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <svg onclick="toggleCart()" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            </div>
+        </div>
+    </header>
+
+    <div class="category-nav">
+        <div class="categories">
+            <span class="active" style="font-weight: bold; margin-right: 20px;">Shop All</span>
+            <span>Ceremonial</span>
+            <span style="margin-left: 20px;">Culinary</span>
+            <span style="margin-left: 20px;">Sets</span>
+        </div>
+        <div style="cursor: pointer;">Sort by ▾</div>
+    </div>
+
+    <div style="padding: 2rem 3rem; max-width: 1400px; margin: 0 auto;">
+        <h1 class="serif" style="font-size: 3rem;">Matcha Collection</h1>
+        <p style="margin-top: 1rem; max-width: 600px; color: #666;">
+            Sourced directly from Uji, Japan. Our matcha is shade-grown for 20 days and stone-ground to preserve its vibrant color and umami flavor.
+        </p>
+    </div>
+
+    <section class="product-grid" id="productsGrid">
+        <!-- Products will be loaded dynamically via JavaScript -->
+        <div style="grid-column: 1/-1; text-align: center; padding: 2rem; color: #666;">
+            Loading products...
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-top">
+            <div class="newsletter">
+                <h3 class="serif">Newsletter</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Sign up for 10% off your first order.</p>
+                <form>
+                    <input type="email" placeholder="Email address" class="newsletter-input">
+                    <button type="button" style="background:none; border:none; font-weight:bold; cursor:pointer;">SUBSCRIBE →</button>
+                </form>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li>Shop</li>
+                        <li>About Us</li>
+                        <li>FAQ</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Legal</h4>
+                    <ul>
+                        <li>Terms of Service</li>
+                        <li>Privacy Policy</li>
+                        <li>Shipping</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="border-top: 1px solid #ddd; padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.8rem; color: #888;">
+            <span>© 2025 KYOTO MIST</span>
+            <span>Instagram &nbsp;&nbsp; Facebook</span>
+        </div>
+    </footer>
+
+    <div id="cart-drawer-placeholder"></div>
+    <script src="script.js"></script>
+    <script src="script-api.js"></script>
+</body>
+</html>

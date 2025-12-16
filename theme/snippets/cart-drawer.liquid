@@ -1,0 +1,76 @@
+<div class="cart-drawer-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="serif" style="font-size: 1.2rem;">{{ 'cart.title' | t }} (<span id="cartCount">{{ cart.item_count }}</span>)</span>
+    <span class="close-cart" onclick="toggleCart()">&times;</span>
+  </div>
+
+  <div class="shipping-bar">
+    {% assign free_shipping_threshold = settings.free_shipping_threshold | default: 50 | times: 100 %}
+    {% assign remaining = free_shipping_threshold | minus: cart.total_price %}
+    {% assign percentage = cart.total_price | times: 100 | divided_by: free_shipping_threshold %}
+    {% if percentage > 100 %}{% assign percentage = 100 %}{% endif %}
+
+    {% if remaining > 0 %}
+      <p style="font-size: 0.8rem; margin-bottom: 5px;">
+        {{ 'cart.free_shipping_remaining' | t: amount: remaining | money }}
+      </p>
+    {% else %}
+      <p style="font-size: 0.8rem; margin-bottom: 5px;">
+        ✓ {{ 'cart.free_shipping_qualified' | t }}
+      </p>
+    {% endif %}
+    <div class="progress-bg">
+      <div class="progress-fill" style="width: {{ percentage }}%;"></div>
+    </div>
+  </div>
+
+  <div class="cart-items">
+    {% if cart.item_count == 0 %}
+      <div style="text-align: center; padding: 2rem;">
+        <p style="color: #666;">{{ 'cart.empty' | t }}</p>
+        <button onclick="toggleCart()" style="margin-top: 1rem; padding: 0.5rem 1rem; background: #7A9A6E; color: white; border: none; cursor: pointer;">
+          {{ 'cart.continue_shopping' | t }}
+        </button>
+      </div>
+    {% else %}
+      {% for item in cart.items %}
+        <div class="cart-item" data-key="{{ item.key }}">
+          <img src="{{ item.image | image_url: width: 200 }}" alt="{{ item.title }}">
+          <div style="display: flex; flex-direction: column; justify-content: center; width: 100%;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+              <span class="serif">{{ item.product.title }}</span>
+              <span>{{ item.line_price | money }}</span>
+            </div>
+            {% if item.variant.title != 'Default Title' %}
+              <span style="font-size: 0.8rem; color: #888;">{{ item.variant.title }}</span>
+            {% endif %}
+            <div style="display: flex; justify-content: space-between; margin-top: 10px; align-items: center;">
+              <div style="border: 1px solid #ddd; padding: 2px 8px; font-size: 0.8rem; display: flex; align-items: center; gap: 10px;">
+                <span onclick="updateQuantity('{{ item.key }}', {{ item.quantity | minus: 1 }})" style="cursor:pointer; font-size: 1.2rem; line-height: 1;">-</span>
+                <span>{{ item.quantity }}</span>
+                <span onclick="updateQuantity('{{ item.key }}', {{ item.quantity | plus: 1 }})" style="cursor:pointer; font-size: 1.2rem; line-height: 1;">+</span>
+              </div>
+              <span onclick="removeItem('{{ item.key }}')" style="font-size: 0.7rem; border-bottom: 1px solid #333; cursor: pointer;">
+                {{ 'cart.remove' | t }}
+              </span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span>{{ 'cart.subtotal' | t }}</span>
+      <span>{{ cart.total_price | money }}</span>
+    </div>
+    <p style="font-size: 0.8rem; color: #666; margin-bottom: 1rem;">
+      {{ 'cart.shipping_at_checkout' | t }}
+    </p>
+    <a href="/checkout" class="add-to-cart-btn" style="margin-bottom: 0; display: block; text-align: center;">
+      {{ 'cart.checkout' | t }}
+    </a>
+  </div>
+</div>
