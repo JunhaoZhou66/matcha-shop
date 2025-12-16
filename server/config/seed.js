@@ -293,12 +293,41 @@ const seedProducts = () => {
   });
 };
 
+// Ensure products table exists before seeding
+const ensureTableExists = (callback) => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS products (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      price REAL NOT NULL,
+      description TEXT,
+      category TEXT,
+      image_url TEXT,
+      stock INTEGER DEFAULT 100,
+      origin TEXT,
+      weight TEXT,
+      servings INTEGER,
+      organic_percentage INTEGER,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `, (err) => {
+    if (err) {
+      console.error('Error creating products table:', err);
+    } else {
+      console.log('✅ Products table ready');
+      callback();
+    }
+  });
+};
+
 // Run seed if called directly
 if (require.main === module) {
-  seedProducts();
-  setTimeout(() => {
-    db.close();
-  }, 2000);
+  ensureTableExists(() => {
+    seedProducts();
+    setTimeout(() => {
+      db.close();
+    }, 2000);
+  });
 }
 
 module.exports = { seedProducts };
