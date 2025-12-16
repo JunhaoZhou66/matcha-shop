@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "node server/config/seed.js && node server/server.js",
+    "start:no-seed": "node server/server.js",
     "dev": "nodemon server/server.js",
     "seed": "node server/config/seed.js",
     "test": "echo \"Error: no test specified\" && exit 1"
